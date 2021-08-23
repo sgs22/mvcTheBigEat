@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace mvcTheBigEat.Models
 {
+
     public class Booking
     {
         public int BookingID { get; set; }

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace mvcTheBigEat.Controllers
 {
+    /*
+    *  Controller used for both index and privacy views, built through project creation scaffolding.
+    */
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -17,6 +20,7 @@ namespace mvcTheBigEat.Controllers
         {
             _logger = logger;
         }
+
 
         public IActionResult Index()
         {

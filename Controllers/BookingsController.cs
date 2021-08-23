@@ -12,6 +12,9 @@ using mvcTheBigEat.Models;
 
 namespace mvcTheBigEat.Controllers
 {
+    /*
+    *  Controller built from the Bookings model, this was built using scaffolding.
+    */
     public class BookingsController : Controller
     {
         private readonly TheBigEatContext _context;
@@ -54,6 +57,7 @@ namespace mvcTheBigEat.Controllers
         {
             
             ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "Name");
+            // On create the select list fetches the users email and displays that rather than the ID to help identify which user is to make a booking.
             ViewData["UserID"] = new SelectList(_context.Users, "ID", "Email");
             return View();
         }
@@ -65,8 +69,10 @@ namespace mvcTheBigEat.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BookingID,CourseID,UserID,Slots")] Booking booking)
         {
-            Course course = _context.Courses.First(c => c.CourseID == booking.CourseID); // get Course with matching PK.
+            // get course with matching PK - fetches through booking foreign key child.
+            Course course = _context.Courses.First(c => c.CourseID == booking.CourseID);
 
+            //assuming the model form is okay to submit - when 'creating' a booking: remove booking.Slots value from the AvailableSlots.
             if (ModelState.IsValid)
             {
                 course.AvailableSlots -= booking.Slots; //remove slots from class.
@@ -76,6 +82,7 @@ namespace mvcTheBigEat.Controllers
             }
             
             ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "Name", booking.CourseID);
+            //select list presents the users email rather than displaying ID to help identify which user is to make a booking.
             ViewData["UserID"] = new SelectList(_context.Users, "ID", "Email", booking.UserID);
             return View(booking);
         }
@@ -94,6 +101,7 @@ namespace mvcTheBigEat.Controllers
                 return NotFound();
             }
             ViewData["CourseID"] = new SelectList(_context.Courses, "CourseID", "Name", booking.CourseID);
+            //select list presents the users email rather than displaying ID to help identify which user is to make a booking.
             ViewData["UserID"] = new SelectList(_context.Users, "ID", "Email", booking.UserID);
             return View(booking);
         }

@@ -10,6 +10,9 @@ using mvcTheBigEat.Models;
 
 namespace mvcTheBigEat.Controllers
 {
+    /*
+    *  Controller used for setting and creating courses to be added to the website.
+    */
     public class CoursesController : Controller
     {
         private readonly TheBigEatContext _context;

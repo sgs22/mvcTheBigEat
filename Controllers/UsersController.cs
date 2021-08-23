@@ -10,6 +10,10 @@ using mvcTheBigEat.Models;
 
 namespace mvcTheBigEat.Controllers
 {
+    /*
+    *  Controller used for managing users - not required for frontend in this usecase.
+    *  Opted against using the identity api for simplicity.
+    */
     public class UsersController : Controller
     {
         private readonly TheBigEatContext _context;
