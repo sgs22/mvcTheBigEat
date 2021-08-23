@@ -9,6 +9,8 @@ namespace mvcTheBigEat.Models
 {
     public class Course
     {
+        // provide the value of the CourseId property - not mark it as an IDENTITY column
+        // needs validation for user input 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CourseID { get; set; }
         [Required]
@@ -30,6 +32,7 @@ namespace mvcTheBigEat.Models
         [Display(Name = "Slots Available")]
         public int AvailableSlots { get; set; }
 
+        // ForeignKey
         public ICollection<Booking> Bookings { get; set; }
 
 
